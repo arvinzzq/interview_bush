@@ -52,6 +52,9 @@ function parseParam(url) {
   return res.params;
 }
 
-var url = 'http://www.domain.com/?user=anonymous&id=123&id=456&city=%E5%8C%97%E4%BA%AC&d&enabled';
+var url = 'http://www.domain.com/?user=anonymous&id=123&id=456&city=%E5%8C%97%E4%BA%AC&d&en' + 'abled';
 var params = parseParam(url);
 console.log('params -> ', params);
+
+// const regxUrl = /^\?\w.&$/; const matchStrs = url.match(regxUrl);
+// console.log('matched strings -> ', matchStrs); 可以思考怎么用正则来解决

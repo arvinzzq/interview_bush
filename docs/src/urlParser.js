@@ -16,13 +16,17 @@ class Params {
 
   add(name, value = true) {
     value = decodeURIComponent(value);
-    if (!isNaN(+value)) {
+    if (!isNaN(+ value)) {
       value = +value;
     }
     if (typeof this.params[name] === 'undefined') {
       this.params[name] = value;
     } else {
-      this.params[name] instanceof Array ? this.params[name].push(value) : (this.params[name] = [this.params[name], value]);
+      this.params[name]instanceof Array
+        ? this
+          .params[name]
+          .push(value)
+        : (this.params[name] = [this.params[name], value]);
     }
   }
 }
@@ -33,10 +37,14 @@ function parseParam(url) {
   const res = new Params();
   params.forEach(param => {
     res.add(param.split('=')[0], param.split('=')[1]);
-  })
+  });
   return res.params;
 }
 
-var url = 'http://www.domain.com/?user=anonymous&id=123&id=456&city=%E5%8C%97%E4%BA%AC&d&enabled';
+var url = 'http://www.domain.com/?user=anonymous&id=123&id=456&city=%E5%8C%97%E4%BA%AC&d&en' +
+    'abled';
 const params = parseParam(url);
 console.log('params -> ', params);
+
+// const regxUrl = /^\?\w.&$/; const matchStrs = url.match(regxUrl);
+// console.log('matched strings -> ', matchStrs); 可以思考怎么用正则来解决
