@@ -5,7 +5,7 @@
 var template = '我是{{name}}，年龄{{age}}，性别{{sex}}';
 
 function render(template, data) {
-  var regTpl = /\{\{\s*(?=\w+)\s*\}\}/gi;
+  var regTpl = /\{\{\s*(\w+)\s*\}\}/gi;
   var valArr = template.match(regTpl).map(function (item) {
     return item.replace(/\}\}|\{\{/g, '');
   });
@@ -17,7 +17,8 @@ function render(template, data) {
 
 var res = render(template, {
   name: '钟志强',
-  age: 3
+  age: 3,
+  sex: '男'
 });
 
 console.log('res -> ', res);

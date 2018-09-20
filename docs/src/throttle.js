@@ -3,7 +3,7 @@ function throttle(func, wait = 0) {
   let current_timer = null;
   return function (...args) {
     current_timer = +new Date();
-    if ((last_timer && last_timer + wait < current_timer) || !last_timer) {
+    if (!last_timer || (last_timer + wait < current_timer)) {
       func.apply(this, args);
       last_timer = current_timer;
     }

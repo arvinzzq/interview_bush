@@ -7,7 +7,7 @@ function throttle(func) {
   var current_timer = null;
   return function () {
     current_timer = +new Date();
-    if (last_timer && last_timer + wait < current_timer || !last_timer) {
+    if (!last_timer || last_timer + wait < current_timer) {
       for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }

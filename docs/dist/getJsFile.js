@@ -27,7 +27,7 @@ var getJSFiles = function getJSFiles(dirPath) {
   return result;
 };
 
-var list = getJSFiles('./docs/').map(function (item) {
+var list = getJSFiles('../../docs/').map(function (item) {
   return item.replace(new RegExp(__dirname, 'g'), '');
 });
 
