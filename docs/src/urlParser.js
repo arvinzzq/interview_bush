@@ -22,7 +22,7 @@ class Params {
     if (typeof this.params[name] === 'undefined') {
       this.params[name] = value;
     } else {
-      this.params[name]instanceof Array
+      this.params[name] instanceof Array
         ? this
           .params[name]
           .push(value)
