@@ -1,11 +1,20 @@
 function throttle(func, wait = 0) {
-  let last_timer = null;
-  let current_timer = null;
-  return function (...args) {
-    current_timer = +new Date();
-    if (!last_timer || (last_timer + wait < current_timer)) {
+  let handler = null;
+  let lastTime = +(new Date());
+  return function(...args) {
+    const currentTime = +(new Date());
+    const remainTime = wait - (currentTime - lastTime);
+    if (handler) {
+      clearTimeout(handler);
+    }
+    if (remainTime <= 0) {
+      lastTime = +(new Date());
       func.apply(this, args);
-      last_timer = current_timer;
+    } else {
+      handler = setTimeout(() => {
+        lastTime = +(new Date());
+        func.apply(this, args);
+      }, remainTime);
     }
   };
 }
@@ -14,12 +23,10 @@ function say() {
   console.log('heiheihei');
 }
 
-const ssay = throttle(say, 2000);
+const ssay = throttle(say, 3000);
 
 const handler = setInterval(ssay, 1000);
 
-setTimeout(() =>{
+setTimeout(() => {
   clearInterval(handler);
-  console.log('clear handler');
 }, 10000);
-
