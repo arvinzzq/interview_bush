@@ -1,5 +1,5 @@
 function loadIfNeeded($img) {
-  const bounding = $img..getBoundingClientRect();
+  const bounding = $img.getBoundingClientRect();
   if (
     getComputedStyle($img).display !== 'none'
     && bounding.top <= window.innerHeight

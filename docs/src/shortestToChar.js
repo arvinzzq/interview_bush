@@ -1,4 +1,5 @@
 /**
+ * @description https://leetcode.cn/problems/shortest-distance-to-a-character
  * @param {string} s
  * @param {character} c
  * @return {number[]}

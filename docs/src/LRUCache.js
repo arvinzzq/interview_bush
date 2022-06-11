@@ -68,7 +68,6 @@ class LRUCache {
 
   printList() {
     let pointer = this.head;
-    console.log('printList: ');
     while (pointer) {
       console.log(' ', pointer.key);
       pointer = pointer.nextNode;

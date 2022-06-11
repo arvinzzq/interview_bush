@@ -1,16 +1,28 @@
-function debounce(func, wait = 0) {
-  let handler = null;
-  return function(...args) {
-    // 首次调用直接执行
-    if (handler === null) {
-      func.apply(this, args);
-      handler = setTimeout(() => clearTimeout(handler), wait);
-    } else {
-      if (handler) {
-        clearTimeout(handler);
+// 防抖函数
+
+function debounce(func, wait, immediate) {
+
+  let timeout;
+
+  return function () {
+      let context = this;
+      let args = arguments;
+
+      if (timeout) clearTimeout(timeout); // timeout 不为null
+      if (immediate) {
+          let callNow = !timeout; // 第一次会立即执行，以后只有事件执行后才会再次触发
+          timeout = setTimeout(function () {
+              timeout = null;
+          }, wait)
+          if (callNow) {
+              func.apply(context, args)
+          }
       }
-      handler = setTimeout(() => func.apply(this, args), wait);
-    }
+      else {
+          timeout = setTimeout(function () {
+              func.apply(context, args)
+          }, wait);
+      }
   }
 }
 

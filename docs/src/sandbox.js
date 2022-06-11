@@ -1,17 +1,25 @@
-// 
-function evalute(code, sandbox) {
-  sandbox = sandbox || Object.create(null);
-  const fn = new Function('sandbox', `with(sandbox){return (${code})}`);
-  const proxy = new Proxy(sandbox, {
-    has(target, key) {
-      // 让动态执行的代码认为属性已存在
-      return true;
-    }
-  });
-  return fn(proxy);
+function compileCode(code) {
+  code = `with (sandbox) { ${code} }`;
+  const fn = new Function('sandbox', code);
+  return (sandbox) => {
+    const proxy = new Proxy(sandbox, {
+      // 拦截所有属性，防止到 Proxy 对象以外的作用域链查找。
+      has(target, key) {
+        return true;
+      },
+      get(target, key, receiver) {
+        // 加固，防止逃逸
+        if (key === Symbol.unscopables) {
+          return undefined;
+        }
+        return Reflect.get(target, key, receiver);
+      },
+    });
+    return fn(proxy);
+  };
 }
-evalute('1+2') // 3
-evalute('console.log(1)') // Cannot read property 'log' of undefined
+compileCode('1+2') // 3
+compileCode('console.log(1)') // Cannot read property 'log' of undefined
 
 // nodejs
 const vm = require('vm');

@@ -32,17 +32,17 @@ const nodeTree = {
   }],
 };
 
-const bfsTraverseTree = (elementNode, level = 0, callback = () => null) => {
+const dfsTraverseTree = (elementNode, level = 0, callback = () => null) => {
   // 从左到有广度优先便利
-  callback(elementNode, level++);
+  callback(elementNode, level);
   for (let i = 0; i < (elementNode.children || []).length; i++) {
-    bfsTraverseTree(elementNode.children[i], level, callback);
+    dfsTraverseTree(elementNode.children[i], level + 1, callback);
   }
 }
 
 const findTreeLeftView = (elementNode) => {
   const treeList = [];
-  bfsTraverseTree(elementNode, 0, (node, level) => {
+  dfsTraverseTree(elementNode, 0, (node, level) => {
     treeList[level] = treeList[level] ? treeList[level].concat(node) : [node];
   });
   return treeList.map(levelList => levelList[0]);

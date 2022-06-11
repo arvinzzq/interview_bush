@@ -83,13 +83,13 @@ var obj3 = {
 };
 
 obj3 = new Proxy(obj3, {
-  get(target, property) {
+  get(target, property, receiver) {
     console.log('proxy get ->');
-    return target[property];
+    return  Reflect.get(target, property, receiver);
   },
-  set(target, property, value) {
+  set(target, property, value, receiver) {
     console.log('proxy set ->');
-    return target[property] = value;
+    return Reflect.set(target, property, value, receiver);
   }
 });
 

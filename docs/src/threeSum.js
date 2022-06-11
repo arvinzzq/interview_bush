@@ -1,3 +1,0 @@
-function treeSum(nums, target) {
-
-}

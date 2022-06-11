@@ -9,7 +9,7 @@ class ListNode {
     this.next = null;
   }
 
-  append (val) {
+  append(val) {
     this.next = new ListNode(val);
   }
 }
@@ -38,6 +38,18 @@ var reverseList = function (head) {
   }
   return preNode;
 };
+
+function reverseList(head) {
+  let pointer = head;
+  let preNode = null;
+  while (pointer) {
+    const nextNode = pointer.next;
+    pointer.next = preNode;
+    preNode = pointer;
+    pointer = nextNode;
+  }
+  return preNode;
+}
 
 const res = reverseList(list1);
 

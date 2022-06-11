@@ -1,6 +1,6 @@
 const findNearestParentDomNode = (domNode1, domNode2) => {
   const domNodeParentList1 = [];
-  const domNodeparentList2 = []
+  const domNodeparentList2 = [];
   let pointer1 = domNode1.parentElement;
   let pointer2 = domNode2.parentElement;
   while (pointer1) {

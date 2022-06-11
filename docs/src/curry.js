@@ -15,7 +15,7 @@ function curry(func) {
     if (args.length < func.length) {
       return curryInner;
     }
-    return func(...args);
+    return func.apply(this, args);
   }
   return curryInner;
 }
