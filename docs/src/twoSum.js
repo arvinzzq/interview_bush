@@ -9,7 +9,6 @@
 // hash
 function twoSum(nums, target) {
   const map = {};
-
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] in map) {
       return [map[nums[i]], i];

@@ -39,16 +39,4 @@ function bfs(node) {
   return traverseRes;
 }
 
-bfs(root)
-
-function bfs(root) {
-  let stack = [root];
-  const nodeList = [];
-  let node = null;
-  while (stack.length) {
-    node = stack.shift();
-    nodeList.push(node.name);
-    stack = stack.concat(node.children || []);
-  }
-  return nodeList;
-}
+bfs(root);

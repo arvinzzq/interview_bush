@@ -11,7 +11,7 @@ add(1, 2) // 3
 function curry(func) {
   let args = [];
   function curryInner() {
-    args.push(...arguments);
+    args = args.concat([...arguments]);
     if (args.length < func.length) {
       return curryInner;
     }
