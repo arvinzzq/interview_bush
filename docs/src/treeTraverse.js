@@ -42,3 +42,10 @@ function traverser(node, arr) {
 }
 
 traverser(node, []);
+
+// 二叉树遍历
+/**
+ * 前序遍历：中左右
+ * 中序遍历：左中右
+ * 后序遍历：左右中
+ */

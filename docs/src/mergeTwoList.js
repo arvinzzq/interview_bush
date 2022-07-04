@@ -46,7 +46,3 @@ var mergeTwoLists = function (l1, l2) {
 
 const resList = mergeTwoLists(list1, list2);
 console.log('resList: ', resList);
-
-
-
-
