@@ -54,7 +54,7 @@ function preorderTraversal(node) {
   preorderTraversal(node.right);
 }
 
-// 前序遍历
+// 后序遍历
 function postorderTraversal(node) {
   if (!node) {
     return;
